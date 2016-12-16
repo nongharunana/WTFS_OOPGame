@@ -7,7 +7,8 @@ class Botton:
         self.image_press = arcade.Sprite("images/bot2.png",1)
         self.image_press.center_x = self.center_x
         self.image_press.center_y = self.center_y
-        self.image_unpress = arcade.Sprite("images/bot1.png",2)
+        self.image_unpress = arcade.Sprite("images/bot1.png",1)
         self.image_unpress.center_y = self.center_y
         self.image_unpress.center_x = self.center_x
         self.text = text
+        self.mouse_on = False
