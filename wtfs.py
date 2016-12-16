@@ -1,5 +1,4 @@
 import arcade
-import arcade.Sprite
 from objects import World
 from model_default import Model
 
@@ -24,7 +23,7 @@ class WtfsGameWindow(arcade.Window):
         arcade.draw_text(str(self.world.time),self.width - 60, self.height - 30,arcade.color.WHITE, 20)
         arcade.draw_text("total songs : ",self.width - 1100, self.height - 670,arcade.color.WHITE, 20)
         arcade.draw_text(str(self.world.score),self.width - 950, self.height - 670,arcade.color.WHITE, 20)
-        arcade.draw
+        
 
 
 
