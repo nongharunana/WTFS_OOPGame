@@ -10,6 +10,9 @@ class Botton:
         self.image_unpress = arcade.Sprite("images/bot1.png",1)
         self.image_unpress.center_y = self.center_y
         self.image_unpress.center_x = self.center_x
+        self.image_true_choice = arcade.Sprite("images/true.png",1)
+        self.image_true_choice.center_y = self.center_y
+        self.image_true_choice.center_x = self.center_x
         self.text = text
         self.mouse_on = False
 

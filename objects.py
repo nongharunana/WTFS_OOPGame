@@ -10,7 +10,7 @@ class World:
         self.width = width
         self.height = height
         self.score=0
-        self.life = 3
+        self.life = 1
         #self.time = 5
         self.count = 0
         self.songs_collection = SongsCollection(self)
@@ -53,9 +53,9 @@ class World:
                 if choose_choice != "":
                     if choose_choice == self.true_song:
                         self.score += 1
-                        self.pause_sound()
                     else :
                         self.life -= 1
+                    self.pause_sound()
                     self.is_gen_new_songs = True
             if self.life <= 0:
                 self.status_game = self.status_gameover

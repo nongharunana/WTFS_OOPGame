@@ -8,8 +8,6 @@ SCREEN_HEIGHT = 700
 class WtfsGameWindow(arcade.Window):
     def __init__(self, width, height):
         super().__init__(width, height)
-
-
         self.world = World(width, height)
 
     def animate(self,delta):
@@ -21,7 +19,6 @@ class WtfsGameWindow(arcade.Window):
         self.draw_text()
         self.draw_botton()
 
-
     def draw_botton(self):
         if self.world.status_game == self.world.status_play:
             for botton in self.world.bottons:
@@ -29,6 +26,8 @@ class WtfsGameWindow(arcade.Window):
                     botton.image_press.draw()
                 else:
                     botton.image_unpress.draw()
+                if self.world.is_press:
+                    botton.image_true_choice.draw()
                 arcade.draw_text(botton.text,botton.center_x,botton.center_y,arcade.color.BLACK,20,align = "center",anchor_x = "center" , anchor_y ="center")
 
     def draw_screen(self):
@@ -44,8 +43,8 @@ class WtfsGameWindow(arcade.Window):
 
     def draw_text(self):
         if self.world.status_game == self.world.status_play:
-            arcade.draw_text("Life :",self.width - 1100, self.height - 30,arcade.color.WHITE, 20)
-            arcade.draw_text(str(self.world.life),self.width - 1025, self.height - 30,arcade.color.WHITE, 20)
+            #arcade.draw_text("Life :",self.width - 1100, self.height - 30,arcade.color.WHITE, 20)
+            #arcade.draw_text(str(self.world.life),self.width - 1025, self.height - 30,arcade.color.WHITE, 20)
             #arcade.draw_text("Time : ",self.width - 150, self.height - 30,arcade.color.WHITE, 20)
             #arcade.draw_text(str(self.world.time),self.width - 60, self.height - 30,arcade.color.WHITE, 20)
             arcade.draw_text("total songs : ",self.width - 1100, self.height - 670,arcade.color.WHITE, 20)
