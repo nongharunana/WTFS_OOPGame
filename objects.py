@@ -11,7 +11,6 @@ class World:
         self.height = height
         self.score=0
         self.life = 1
-        #self.time = 5
         self.count = 0
         self.songs_collection = SongsCollection(self)
         self.is_gen_new_songs = True
@@ -22,18 +21,18 @@ class World:
         self.status_start = -1
         self.status_play = 1
         self.status_gameover = 2
-        self.is_press_space = False
         self.get_screen()
+        self.draw_button_screen()
+        self.status_screen()
 
     def status_screen(self):
         if self.status_game == self.status_start:
-            if self.is_press_space == True:
-                self.status_game = self.status_play
-                self.is_press_space = False
-
+            if self.is_start_press :
+                if self.is_press:
+                    self.status_game = self.status_play
+                    self.is_start_press = False
 
     def animate(self,delta):
-        self.status_screen()
         if self.is_gen_new_songs:
             self.gen_levels()
             self.gen_botton()
@@ -41,7 +40,6 @@ class World:
             self.is_gen_new_songs = False
         self.mouse_detect()
         self.cal_score()
-
 
     def cal_score(self):
         if self.is_press :
@@ -69,6 +67,22 @@ class World:
             if self.bottons[i].center_x - 235 <= self.mouse_x <= self.bottons[i].center_x + 235  :
                 if self.bottons[i].center_y - 75 <= self.mouse_y <= self.bottons[i].center_y + 75 :
                     self.bottons[i].mouse_on = True
+
+    def mouse_detect_start_button(self):
+        self.is_start_press = False
+        if self.sc_game_start_button_unpress.center_x - 200 <= self.mouse_x <= self.sc_game_start_button_unpress.center_x + 200 :
+            if self.sc_game_start_button_unpress.center_y - 200 <= self.mouse_y <= self.sc_game_start_button_unpress.center_y +200 :
+                self.is_start_press = True
+
+
+    def draw_button_screen(self):
+        self.sc_game_start_button_unpress = arcade.Sprite("images/start_button.png",1)
+        self.sc_game_start_button_unpress.center_x = 600
+        self.sc_game_start_button_unpress.center_y = 275
+        self.sc_game_start_button_press = arcade.Sprite("images/start_button2.png",1)
+        self.sc_game_start_button_press.center_x = 600
+        self.sc_game_start_button_press.center_y = 275
+        self.is_start_press = False
 
     def gen_botton(self):
         self.bottons = [Botton(300,400,self.choices[0]),Botton(300,200,self.choices[1]),Botton(900,200,self.choices[2]),Botton(900,400,self.choices[3])]

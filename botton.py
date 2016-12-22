@@ -23,6 +23,4 @@ class Screen:
         self.sc_game_start = arcade.Sprite("images/start.jpg",1)
         self.sc_game_start.center_x = self.sc_center_x
         self.sc_game_start.center_y = self.sc_center_y
-        self.sc_game_start_button = arcade.Sprite("images/start_button.png",1)
-        self.sc_game_start_button.center_x = 620
-        self.sc_game_start_button.center_y = 480
+        
