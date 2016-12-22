@@ -1,5 +1,6 @@
 import arcade
 from objects import World
+from botton import Screen
 from model_default import Model
 
 SCREEN_WIDTH = 1200
@@ -9,9 +10,11 @@ class WtfsGameWindow(arcade.Window):
     def __init__(self, width, height):
         super().__init__(width, height)
         self.world = World(width, height)
+        self.screen = Screen(width,height)
 
     def animate(self,delta):
-        self.world.animate(delta)
+        if self.world.status_game == self.world.status_play:
+            self.world.animate(delta)
 
     def on_draw(self):
         arcade.start_render()
@@ -26,19 +29,16 @@ class WtfsGameWindow(arcade.Window):
                     botton.image_press.draw()
                 else:
                     botton.image_unpress.draw()
-                if self.world.is_press:
-                    botton.image_true_choice.draw()
                 arcade.draw_text(botton.text,botton.center_x,botton.center_y,arcade.color.BLACK,20,align = "center",anchor_x = "center" , anchor_y ="center")
+        if self.world.status_game == self.world.status_start:
+            self.screen.sc_game_start_button.draw()
 
     def draw_screen(self):
         if self.world.status_game == self.world.status_start:
                 self.world.set_screen.sc_game_start.draw()
         if self.world.status_game == self.world.status_gameover:
-                arcade.draw_text("Your scores :",self.width - 1100, self.height - 30,arcade.color.WHITE, 30)
-                arcade.draw_text(str(self.world.score),self.width - 850, self.height - 30,arcade.color.WHITE, 20)
                 self.world.set_screen.sc_gameover.draw()
-        if self.world.status_game == self.world.status_play:
-                self.world.set_screen.sc_play.draw()
+
 
 
     def draw_text(self):
@@ -49,6 +49,9 @@ class WtfsGameWindow(arcade.Window):
             #arcade.draw_text(str(self.world.time),self.width - 60, self.height - 30,arcade.color.WHITE, 20)
             arcade.draw_text("total songs : ",self.width - 1100, self.height - 670,arcade.color.WHITE, 20)
             arcade.draw_text(str(self.world.score),self.width - 950, self.height - 670,arcade.color.WHITE, 20)
+        if self.world.status_game == self.world.status_gameover:
+                #arcade.draw_text("Your scores :",self.width - 800, self.height - 550,arcade.color.BLACK, 30)
+                arcade.draw_text(str(self.world.score),self.width - 620, self.height - 480,arcade.color.WHITE, 100)
 
     def on_mouse_press(self,x,y,button,modifiers):
         self.world.is_press = True

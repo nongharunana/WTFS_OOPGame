@@ -18,11 +18,12 @@ class World:
         self.is_press = False
         self.mouse_x = 0
         self.mouse_y = 0
-        self.status_game = 1
+        self.status_game = -1
         self.status_start = -1
         self.status_play = 1
         self.status_gameover = 2
         self.is_press_space = False
+        self.get_screen()
 
     def status_screen(self):
         if self.status_game == self.status_start:
@@ -33,7 +34,6 @@ class World:
 
     def animate(self,delta):
         self.status_screen()
-        self.get_screen()
         if self.is_gen_new_songs:
             self.gen_levels()
             self.gen_botton()
@@ -59,7 +59,8 @@ class World:
                     self.is_gen_new_songs = True
             if self.life <= 0:
                 self.status_game = self.status_gameover
-
+                self.pause_sound()
+                self.is_gen_new_songs = False
             self.is_press = False
 
     def mouse_detect(self):
