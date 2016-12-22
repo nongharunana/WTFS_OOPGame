@@ -12,9 +12,11 @@ class WtfsGameWindow(arcade.Window):
         self.world = World(width, height)
 
     def animate(self,delta):
+        self.world.mouse_detect_start_button()
+        self.world.status_screen()
         if self.world.status_game == self.world.status_play:
             self.world.animate(delta)
-        self.world.mouse_detect_start_button()
+
 
     def on_draw(self):
         arcade.start_render()
@@ -44,9 +46,10 @@ class WtfsGameWindow(arcade.Window):
                 self.world.set_screen.sc_gameover.draw()
 
     def draw_text(self):
+        if self.world.status_game == self.world.status_play:
+            arcade.draw_text("WTFS",self.width - 750 ,self.height - 150,arcade.color.WHITE,100)
         if self.world.status_game == self.world.status_gameover:
-                #arcade.draw_text("Your scores :",self.width - 800, self.height - 550,arcade.color.BLACK, 30)
-                arcade.draw_text(str(self.world.score),self.width - 620, self.height - 480,arcade.color.WHITE, 100)
+            arcade.draw_text(str(self.world.score),self.width - 620, self.height - 480,arcade.color.RED, 100)
 
     def on_mouse_press(self,x,y,button,modifiers):
         self.world.is_press = True

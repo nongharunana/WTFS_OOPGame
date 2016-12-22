@@ -23,7 +23,7 @@ class World:
         self.status_gameover = 2
         self.get_screen()
         self.draw_button_screen()
-        self.status_screen()
+        
 
     def status_screen(self):
         if self.status_game == self.status_start:
