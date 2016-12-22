@@ -2,7 +2,7 @@ import arcade.key
 import arcade.sound
 from random import randint,random
 from model_SongsCollection import SongsCollection
-from botton import Botton,Screen
+from button import Button,Screen
 
 class World:
     def __init__(self, width, height):
@@ -23,7 +23,7 @@ class World:
         self.status_gameover = 2
         self.get_screen()
         self.draw_button_screen()
-        
+
 
     def status_screen(self):
         if self.status_game == self.status_start:
@@ -35,7 +35,7 @@ class World:
     def animate(self,delta):
         if self.is_gen_new_songs:
             self.gen_levels()
-            self.gen_botton()
+            self.gen_button()
             self.play_sound()
             self.is_gen_new_songs = False
         self.mouse_detect()
@@ -44,7 +44,7 @@ class World:
     def cal_score(self):
         if self.is_press :
             choose_choice = ""
-            for button in self.bottons :
+            for button in self.buttons :
                 if button.mouse_on :
                     choose_choice = button.text
             if self.life > 0:
@@ -62,11 +62,11 @@ class World:
             self.is_press = False
 
     def mouse_detect(self):
-        for i in range (0,len(self.bottons)):
-            self.bottons[i].mouse_on = False
-            if self.bottons[i].center_x - 235 <= self.mouse_x <= self.bottons[i].center_x + 235  :
-                if self.bottons[i].center_y - 75 <= self.mouse_y <= self.bottons[i].center_y + 75 :
-                    self.bottons[i].mouse_on = True
+        for i in range (0,len(self.buttons)):
+            self.buttons[i].mouse_on = False
+            if self.buttons[i].center_x - 235 <= self.mouse_x <= self.buttons[i].center_x + 235  :
+                if self.buttons[i].center_y - 75 <= self.mouse_y <= self.buttons[i].center_y + 75 :
+                    self.buttons[i].mouse_on = True
 
     def mouse_detect_start_button(self):
         self.is_start_press = False
@@ -84,8 +84,8 @@ class World:
         self.sc_game_start_button_press.center_y = 275
         self.is_start_press = False
 
-    def gen_botton(self):
-        self.bottons = [Botton(300,400,self.choices[0]),Botton(300,200,self.choices[1]),Botton(900,200,self.choices[2]),Botton(900,400,self.choices[3])]
+    def gen_button(self):
+        self.buttons = [Button(300,400,self.choices[0]),Button(300,200,self.choices[1]),Button(900,200,self.choices[2]),Button(900,400,self.choices[3])]
 
     def get_screen(self):
         self.set_screen = Screen(600,350)

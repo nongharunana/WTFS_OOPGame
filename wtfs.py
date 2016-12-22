@@ -1,7 +1,7 @@
 import arcade
 from objects import World
 from model_default import Model
-from botton import Screen
+from button import Screen
 
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 700
@@ -22,16 +22,16 @@ class WtfsGameWindow(arcade.Window):
         arcade.start_render()
         self.draw_screen()
         self.draw_text()
-        self.draw_botton()
+        self.draw_button()
 
-    def draw_botton(self):
+    def draw_button(self):
         if self.world.status_game == self.world.status_play:
-            for botton in self.world.bottons:
-                if botton.mouse_on:
-                    botton.image_press.draw()
+            for button in self.world.buttons:
+                if button.mouse_on:
+                    button.image_press.draw()
                 else:
-                    botton.image_unpress.draw()
-                arcade.draw_text(botton.text,botton.center_x,botton.center_y,arcade.color.BLACK,20,align = "center",anchor_x = "center" , anchor_y ="center")
+                    button.image_unpress.draw()
+                arcade.draw_text(button.text,button.center_x,button.center_y,arcade.color.BLACK,20,align = "center",anchor_x = "center" , anchor_y ="center")
         if self.world.status_game == self.world.status_start:
             if self.world.is_start_press :
                 self.world.sc_game_start_button_press.draw()
